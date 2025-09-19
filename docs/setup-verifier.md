@@ -250,9 +250,9 @@ export const UNIFIED_ID_MSO_MDOC: MsoMdocAttestation = {
   format: AttestationFormat.MSO_MDOC,
   attestationDef: UNIFIED_ID_ATTESTATION,
   doctype: 'com.dentsusoken.vecrea.UnifiedID',
-  namespace: 'com.dentsusoken.vecrea.UnifiedID',
-  attributePath: (attribute: DataElement) => { return msoMdocAttributePath(attribute, 'com.dentsusoken.vecrea.UnifiedID') },
-  claimQuery: (attribute: DataElement) => { return msoMdocClaimQuery('com.dentsusoken.vecrea.UnifiedID', attribute.identifier) }
+  namespace: 'com.dentsusoken.vecrea',
+  attributePath: (attribute: DataElement) => { return msoMdocAttributePath(attribute, 'com.dentsusoken.vecrea') },
+  claimQuery: (attribute: DataElement) => { return msoMdocClaimQuery('com.dentsusoken.vecrea', attribute.identifier) }
 }
 中略
 export const ATTESTATIONS_BY_FORMAT: { [id: string]: Attestation[] } = {

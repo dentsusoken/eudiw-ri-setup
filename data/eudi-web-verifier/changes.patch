@@ -157,9 +157,9 @@ index 4ab1024..28dbdc9 100644
 +  format: AttestationFormat.MSO_MDOC,
 +  attestationDef: UNIFIED_ID_ATTESTATION,
 +  doctype: 'com.dentsusoken.vecrea.UnifiedID',
-+  namespace: 'com.dentsusoken.vecrea.UnifiedID',
-+  attributePath: (attribute: DataElement) => { return msoMdocAttributePath(attribute, 'com.dentsusoken.vecrea.UnifiedID') },
-+  claimQuery: (attribute: DataElement) => { return msoMdocClaimQuery('com.dentsusoken.vecrea.UnifiedID', attribute.identifier) }
++  namespace: 'com.dentsusoken.vecrea',
++  attributePath: (attribute: DataElement) => { return msoMdocAttributePath(attribute, 'com.dentsusoken.vecrea') },
++  claimQuery: (attribute: DataElement) => { return msoMdocClaimQuery('com.dentsusoken.vecrea', attribute.identifier) }
 +}
 +
  /*---- PHOTO ID ATTESTATION INSTANCES PER FORMAT ----*/
