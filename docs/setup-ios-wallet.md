@@ -63,7 +63,7 @@ EUDI iOS Wallet reference application のリポジトリをローカルにクロ
 1. <https://github.com/eu-digital-identity-wallet/eudi-app-ios-wallet-ui> を開きます
 2. Code → Local → HTTPS からクローン用の URL をクリップボードにコピーします  
    <img src="./images/git.wallet.clone.png" alt="Clone" width="600" thumbnail="true"/>
-3. ターミナルを開き、以下のコマンドでリポジトリをクローンします
+3. ターミナルを開き、`git clone` の後にコピーした文字列を貼り付けて実行し、リポジトリをクローンします
 
    ```zsh
    git clone https://github.com/eu-digital-identity-wallet/eudi-app-ios-wallet-ui.git
@@ -71,17 +71,17 @@ EUDI iOS Wallet reference application のリポジトリをローカルにクロ
 
 ### 3.2. 3.2 タグのチェックアウト (特定のバージョンへの切り替え)
 
-git checkout コマンドを実行し、使用するバージョンへ切り替えます。
+`git checkout` コマンドを実行し、使用するバージョンへ切り替えます。
 
 1. ターミナルを開き、以下のコマンドを実行します
 
    ```zsh
    cd eu-digital-identity-wallet
    git checkout Wallet/Demo_2025.07.28-Demo_Build=28
+   git log
    ```
 
-2. ターミナルに表示されていたブランチ名 (main) が @509f0255 に変わればチェックアウトは成功です  
-   <img src="./images/git.checkout.png" alt="Clone" width="500" thumbnail="true"/>
+2. git log の結果が表示されたら、一番上の commit に  `(HEAD, tag: Wallet/Demo_2025.07.28-Demo_Build=28)` の表示があればチェックアウトは成功です
 
 ## 4. アプリの実行
 
@@ -287,3 +287,11 @@ iOS Simulator を初期状態にリセットするには、Device → Erase All 
 (ウォレットに保存されたデータ、ウォレットアプリ、Safari のブックマークなどもすべて削除されます)
 
 <img src="./images/sim.reset.png" alt="Simulator reset" width="400" thumbnail="true" />
+
+### iOS Simulator に証明書をインポートして信頼設定する
+
+iOS Simulator で localhost の自己署名証明書を信頼するためには、次のコマンドを実行してください。
+
+```zsh
+xcrun simctl keychain booted add-root-cert path/to/certificate
+```
