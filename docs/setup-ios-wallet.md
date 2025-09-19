@@ -2,7 +2,7 @@
 
 ## 1. はじめに
 
-本ドキュメントでは、EUDI iOS Wallet reference application (以下ウォレットまたは EUDIWと呼ぶことがあります) のセットアップ手順について説明します。
+本ドキュメントでは、EUDI iOS Wallet reference application (以下ウォレットまたは EUDIW と呼ぶことがあります) のセットアップ手順について説明します。
 
 この手順では、Mac にインストールされた XCode および iOS Simulator を使用して、EUDIW iOS Wallet を実行します。
 システム要件につきましては、後述の [システム要件](#21-システム要件) をご確認ください。
@@ -40,10 +40,10 @@ XCode と macOS のバージョンの互換性については <https://developer
    <https://git-scm.com/downloads/mac>
 3. ターミナルを開き、以下のコマンドで名前とメールアドレスを設定します
 
-  ```zsh
-  git config --global user.name "あなたの名前"
-  git config --global user.email "あなたのメールアドレス"
-  ```
+   ```zsh
+   git config --global user.name "あなたの名前"
+   git config --global user.email "あなたのメールアドレス"
+   ```
 
 ### 2.4. GitHub のセットアップ
 
@@ -244,7 +244,7 @@ EUDI iOS Wallet は仕様により PID を取得してアクティベートさ�
 6. 取得した mDL を確認します  
    <img src="./images/wallet.issuance.mdl.6.png" alt="Wallet mDL issuance 6" width="600" thumbnail="true" />
 
-### 6.4 電通総研 Verifier に mDL を提示する
+### 6.4. 電通総研 Verifier に mDL を提示する
 
 現在、EUDI iOS Wallet から電通総研 Verifier へのドキュメントの提示はできません。
 
@@ -288,7 +288,7 @@ iOS Simulator を初期状態にリセットするには、Device → Erase All 
 
 <img src="./images/sim.reset.png" alt="Simulator reset" width="400" thumbnail="true" />
 
-### iOS Simulator に証明書をインポートして信頼設定する
+### 7.3. iOS Simulator に証明書をインポートして信頼設定する
 
 iOS Simulator で localhost の自己署名証明書を信頼するためには、次のコマンドを実行してください。
 

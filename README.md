@@ -2,7 +2,7 @@
 
 ## はじめに
 
-このリポジトリは、[EUDIW-RI (EUDI Wallet Reference Implementation)](https://github.com/eu-digital-identity-wallet/.github/blob/main/profile/reference-implementation.md)を動かすためのセットアップについてまとめたものです。
+このリポジトリは、[EUDIW-RI (EUDI Wallet Reference Implementation)](https://github.com/eu-digital-identity-wallet/.github/blob/main/profile/reference-implementation.md) を動かすためのセットアップについてまとめたものです。
 
 これらの情報は **2025年9月12日** 時点でのものを元に作成されています。
 
@@ -11,7 +11,7 @@
 各コンポーネントのセットアップ方法については下記のリンクをご参照ください。
 
 - [iOS Wallet](./docs/setup-ios-wallet.md)
-- [Issuer](./docs/setup-issuer.md)
+<!-- - [Issuer](./docs/setup-issuer.md) -->
 - [Verifier](./docs/setup-verifier.md)
 
 ## 参考情報
