@@ -1,0 +1,225 @@
+diff --git a/package.json b/package.json
+index b480997..6e10dc5 100644
+--- a/package.json
++++ b/package.json
+@@ -15,64 +15,64 @@
+   },
+   "private": true,
+   "dependencies": {
+-    "@angular/animations": "^19.1.3",
++    "@angular/animations": "^19.2.15",
+     "@angular/cdk": "19.1.1",
+-    "@angular/common": "^19.1.3",
+-    "@angular/compiler": "^19.1.3",
+-    "@angular/core": "^19.1.3",
+-    "@angular/forms": "^19.1.3",
++    "@angular/common": "^19.2.15",
++    "@angular/compiler": "^19.2.15",
++    "@angular/core": "^19.2.15",
++    "@angular/forms": "^19.2.15",
+     "@angular/material": "19.1.1",
+-    "@angular/platform-browser": "^19.1.3",
+-    "@angular/platform-browser-dynamic": "^19.1.3",
+-    "@angular/router": "^19.1.3",
+-    "@codemirror/lang-json": "^6.0.1",
+-    "@types/codemirror": "^5.60.7",
+-    "@types/crypto-js": "^4.1.1",
++    "@angular/platform-browser": "^19.2.15",
++    "@angular/platform-browser-dynamic": "^19.2.15",
++    "@angular/router": "^19.2.15",
++    "@codemirror/lang-json": "^6.0.2",
++    "@types/codemirror": "^5.60.16",
++    "@types/crypto-js": "^4.2.2",
+     "@types/uuid": "10.0.0",
+     "angularx-qrcode": "^19.0.0",
+-    "bignumber.js": "^9.1.2",
++    "bignumber.js": "^9.3.1",
+     "buffer": "^6.0.3",
+     "cbor-x": "^1.6.0",
+-    "codemirror": "^6.0.1",
+-    "crypto-js": "^4.1.1",
++    "codemirror": "^6.0.2",
++    "crypto-js": "^4.2.0",
+     "jsonpath-plus": "^9.0.0",
+-    "jwt-decode": "^3.0.0",
++    "jwt-decode": "^3.1.2",
+     "ngx-toastr": "16.2.0",
+     "nofilter": "^4.0.2",
+-    "rxjs": "~7.8.0",
++    "rxjs": "~7.8.2",
+     "stream-browserify": "^3.0.0",
+     "thememirror": "^2.0.1",
+-    "tslib": "^2.3.0",
+-    "zone.js": "~0.15.0"
++    "tslib": "^2.8.1",
++    "zone.js": "~0.15.1"
+   },
+   "devDependencies": {
+-    "@angular-devkit/build-angular": "^19.1.4",
+-    "@angular-eslint/builder": "^19.0.0",
+-    "@angular-eslint/eslint-plugin": "^19.0.0",
+-    "@angular-eslint/eslint-plugin-template": "^19.0.0",
+-    "@angular-eslint/schematics": "^19.0.0",
+-    "@angular-eslint/template-parser": "^19.0.0",
+-    "@angular/cli": "~19.1.4",
+-    "@angular/compiler-cli": "^19.1.3",
+-    "@types/jasmine": "^5.1.7",
+-    "@types/jest": "^29.5.10",
+-    "@types/node": "^22.6.1",
++    "@angular-devkit/build-angular": "^19.2.17",
++    "@angular-eslint/builder": "^19.8.1",
++    "@angular-eslint/eslint-plugin": "^19.8.1",
++    "@angular-eslint/eslint-plugin-template": "^19.8.1",
++    "@angular-eslint/schematics": "^19.8.1",
++    "@angular-eslint/template-parser": "^19.8.1",
++    "@angular/cli": "~19.1.9",
++    "@angular/compiler-cli": "^19.2.15",
++    "@types/jasmine": "^5.1.9",
++    "@types/jest": "^29.5.14",
++    "@types/node": "^22.18.6",
+     "@typescript-eslint/eslint-plugin": "5.48.2",
+     "@typescript-eslint/parser": "5.48.2",
+-    "cypress": "^12.10.0",
+-    "dotenv": "^16.0.3",
+-    "eslint": "^8.33.0",
++    "cypress": "^12.17.4",
++    "dotenv": "^16.6.1",
++    "eslint": "^8.57.1",
+     "jasmine-core": "~4.5.0",
+-    "karma": "~6.4.0",
+-    "karma-chrome-launcher": "~3.1.0",
+-    "karma-coverage": "~2.2.0",
++    "karma": "~6.4.4",
++    "karma-chrome-launcher": "~3.1.1",
++    "karma-coverage": "~2.2.1",
+     "karma-jasmine": "~5.1.0",
+     "karma-jasmine-html-reporter": "~2.0.0",
+     "karma-sonarqube-reporter": "^1.4.0",
+-    "stylelint": "^15.6.0",
++    "stylelint": "^15.11.0",
+     "stylelint-config-standard": "^33.0.0",
+     "stylelint-config-standard-scss": "^8.0.0",
+-    "stylelint-order": "^6.0.3",
++    "stylelint-order": "^6.0.4",
+     "typescript": "~5.5.4"
+   }
+ }
+diff --git a/src/app/core/constants/attestation-definitions.ts b/src/app/core/constants/attestation-definitions.ts
+index 9f6bc5e..36440b9 100644
+--- a/src/app/core/constants/attestation-definitions.ts
++++ b/src/app/core/constants/attestation-definitions.ts
+@@ -89,6 +89,20 @@ export const AGE_OVER_18_ATTESTATION: AttestationDefinition = {
+   ]
+ }
+ 
++export const UNIFIED_ID_ATTESTATION: AttestationDefinition = {
++  name: "Unified ID",
++  type: AttestationType.UNIFIED_ID,
++  dataSet: [
++    { identifier: 'type', attribute: 'Type'},
++    { identifier: 'issuer', attribute: 'Issuer'},
++    { identifier: 'service', attribute: 'Service'},
++    { identifier: 'user_id', attribute: 'User ID'},
++    { identifier: 'unified_id', attribute: 'Unified ID'},
++    { identifier: 'issue_date', attribute: 'Issuance date'},
++    { identifier: 'expiry_date', attribute: 'Expiry date'},
++  ]
++}
++
+ export const PHOTO_ID_ATTESTATION: AttestationDefinition = {
+   name: "Photo ID",
+   type: AttestationType.PHOTO_ID,
+@@ -177,6 +191,7 @@ export const PDA1_ATTESTATION: AttestationDefinition = {
+ export const SUPPORTED_ATTESTATIONS: { [id: string]: AttestationDefinition } = {
+   "pid": PID_ATTESTATION,
+   "mdl": MDL_ATTESTATION,
++  "unified_id": UNIFIED_ID_ATTESTATION,
+   "photo_id": PHOTO_ID_ATTESTATION,
+   "age_over_18": AGE_OVER_18_ATTESTATION,
+   "ehic": EHIC_ATTESTATION,
+diff --git a/src/app/core/constants/attestations-per-format.ts b/src/app/core/constants/attestations-per-format.ts
+index 4ab1024..28dbdc9 100644
+--- a/src/app/core/constants/attestations-per-format.ts
++++ b/src/app/core/constants/attestations-per-format.ts
+@@ -1,5 +1,5 @@
+ import {Attestation, MsoMdocAttestation, SdJwtVcAttestation} from "@core/models/attestation/Attestations";
+-import {AGE_OVER_18_ATTESTATION, EHIC_ATTESTATION, EHIC_ATTESTATION_DC4EU, MDL_ATTESTATION, PDA1_ATTESTATION, PHOTO_ID_ATTESTATION, PID_ATTESTATION} from "@core/constants/attestation-definitions";
++import {AGE_OVER_18_ATTESTATION, EHIC_ATTESTATION, EHIC_ATTESTATION_DC4EU, MDL_ATTESTATION, PDA1_ATTESTATION, PHOTO_ID_ATTESTATION, PID_ATTESTATION, UNIFIED_ID_ATTESTATION} from "@core/constants/attestation-definitions";
+ import {AttestationFormat} from "@core/models/attestation/AttestationFormat";
+ import {AttestationType} from "@core/models/attestation/AttestationType";
+ import {DataElement} from "@core/models/attestation/AttestationDefinition";
+@@ -47,6 +47,16 @@ export const AGE_OVER_18_MSO_MDOC: MsoMdocAttestation = {
+   claimQuery: (attribute: DataElement) => { return msoMdocClaimQuery('eu.europa.ec.eudi.pseudonym.age_over_18.1', attribute.identifier) }
+ }
+ 
++/*---- UNIFIED ID ATTESTATION INSTANCES PER FORMAT ----*/
++export const UNIFIED_ID_MSO_MDOC: MsoMdocAttestation = {
++  format: AttestationFormat.MSO_MDOC,
++  attestationDef: UNIFIED_ID_ATTESTATION,
++  doctype: 'com.dentsusoken.vecrea.UnifiedID',
++  namespace: 'com.dentsusoken.vecrea.UnifiedID',
++  attributePath: (attribute: DataElement) => { return msoMdocAttributePath(attribute, 'com.dentsusoken.vecrea.UnifiedID') },
++  claimQuery: (attribute: DataElement) => { return msoMdocClaimQuery('com.dentsusoken.vecrea.UnifiedID', attribute.identifier) }
++}
++
+ /*---- PHOTO ID ATTESTATION INSTANCES PER FORMAT ----*/
+ export const PHOTO_ID_MSO_MDOC: MsoMdocAttestation = {
+   format: AttestationFormat.MSO_MDOC,
+@@ -175,7 +185,7 @@ export const PDA1_SD_JWT_VC_DEPRECATED: SdJwtVcAttestation = {
+ }
+ 
+ export const ATTESTATIONS_BY_FORMAT: { [id: string]: Attestation[] } = {
+-  "mso_mdoc": [PID_MSO_MDOC, MDL_MSO_MDOC, PHOTO_ID_MSO_MDOC, AGE_OVER_18_MSO_MDOC, EHIC_MSO_MDOC, PDA1_MSO_MDOC],
++  "mso_mdoc": [PID_MSO_MDOC, MDL_MSO_MDOC, PHOTO_ID_MSO_MDOC, AGE_OVER_18_MSO_MDOC, EHIC_MSO_MDOC, PDA1_MSO_MDOC, UNIFIED_ID_MSO_MDOC],
+   "dc+sd-jwt": [PID_SD_JWT_VC, EHIC_SD_JWT_VC, PDA1_SD_JWT_VC, EHIC_SD_JWT_VC_DC4EU],
+   "vc+sd-jwt": [PID_SD_JWT_VC_DEPRECATED, EHIC_SD_JWT_VC_DEPRECATED, PDA1_SD_JWT_VC_DEPRECATED]
+ }
+diff --git a/src/app/core/models/attestation/AttestationType.ts b/src/app/core/models/attestation/AttestationType.ts
+index 8730043..d71a5a8 100644
+--- a/src/app/core/models/attestation/AttestationType.ts
++++ b/src/app/core/models/attestation/AttestationType.ts
+@@ -1,6 +1,7 @@
+ export enum AttestationType {
+   PID = "pid",
+   MDL = "mdl",
++  UNIFIED_ID="unified_id",
+   PHOTO_ID = "photo_id",
+   AGE_OVER_18 = "age_over_18",
+   EHIC = "ehic",
+diff --git a/src/environments/environment.development.ts b/src/environments/environment.development.ts
+index 976157f..69e756a 100644
+--- a/src/environments/environment.development.ts
++++ b/src/environments/environment.development.ts
+@@ -1,5 +1,5 @@
+ export const environment = {
+-	apiUrl: 'http://localhost:4200',
++	apiUrl: 'https://localhost',
+ 	appName: 'Verifier',
+ 	openid4vpDraft: '24',
+ };
+diff --git a/src/proxy.conf.json b/src/proxy.conf.json
+index bda1c58..507487b 100644
+--- a/src/proxy.conf.json
++++ b/src/proxy.conf.json
+@@ -1,18 +1,18 @@
+ {
+   "/ui": {
+-    "target": "https://dev.verifier-backend.eudiw.dev",
++    "target": "https://verifier-backend.eudiw.dev",
+     "secure": false,
+     "logLevel": "debug",
+     "changeOrigin": true
+   },
+   "/wallet": {
+-    "target": "https://dev.verifier-backend.eudiw.dev",
++    "target": "https://verifier-backend.eudiw.dev",
+     "secure": false,
+     "logLevel": "debug",
+     "changeOrigin": true
+   },
+   "/utilities": {
+-    "target": "https://dev.verifier-backend.eudiw.dev",
++    "target": "https://verifier-backend.eudiw.dev",
+     "secure": false,
+     "logLevel": "debug",
+     "changeOrigin": true
