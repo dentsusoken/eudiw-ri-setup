@@ -1,0 +1,68 @@
+diff --git a/docker/docker-compose.yaml b/docker/docker-compose.yaml
+index 981b4a1..1a84944 100644
+--- a/docker/docker-compose.yaml
++++ b/docker/docker-compose.yaml
+@@ -7,23 +7,25 @@ services:
+     ports:
+       - "8080:8080"
+     environment:
+-      VERIFIER_PUBLICURL: "https://10.240.174.10"
+-      VERIFIER_RESPONSE_MODE: "DirectPost"
+-
+-  verifier-ui:
+-    image: ghcr.io/eu-digital-identity-wallet/eudi-web-verifier:latest
+-    container_name: verifier-ui
+-    ports:
+-      - "4300:4300"
+-    environment:
+-      - DOMAIN_NAME=""
+-      - HOST_API="https://10.240.174.10"
++      VERIFIER_PUBLICURL: "https://localhost"
++      VERIFIER_RESPONSE_MODE: "DirectPostJwt"
++      VERIFIER_CLIENTIDSCHEME: "x509_san_dns"
++      # VERIFIER_CLIENTMETADATA_AUTHORIZATIONENCRYPTEDRESPONSEALG: "ECDH-ES"
++      # VERIFIER_CLIENTMETADATA_AUTHORIZATIONENCRYPTEDRESPONSEENC: "A128CBC-HS256"
++      VERIFIER_JAR_SIGNING_KEY: "LoadFromKeystore"
++      VERIFIER_JAR_SIGNING_KEY_KEYSTORE: "file:///certs/keystore.jks"
++      VERIFIER_JAR_SIGNING_KEY_KEYSTORE_TYPE: "jks"
++      VERIFIER_JAR_SIGNING_KEY_KEYSTORE_PASSWORD: "verifier"
++      VERIFIER_JAR_SIGNING_KEY_ALIAS: "verifier-keystore"
++      VERIFIER_JAR_SIGNING_KEY_PASSWORD: "verifier"
++    volumes:
++      - ./verifier-cert/verifier-keystore.jks:/certs/keystore.jks
+ 
+   haproxy:
+     image: haproxy:2.7.2
+-    container_name: haproxy
++    container_name: verifier-haproxy
+     ports:
+       - "443:443"
+     volumes:
+       - ./haproxy.conf:/usr/local/etc/haproxy/haproxy.cfg
+-      - ./haproxy.pem:/etc/ssl/certs/mysite.pem
++      - ./tls-cert/localhost.pem:/etc/ssl/certs/mysite.pem
+diff --git a/docker/haproxy.conf b/docker/haproxy.conf
+index 23ecd26..dc18ea6 100644
+--- a/docker/haproxy.conf
++++ b/docker/haproxy.conf
+@@ -14,6 +14,7 @@ defaults
+     timeout connect 10s
+     timeout client 30s
+     timeout server 30s
++    timeout tunnel  1h
+     log global
+     mode http
+     option httplog
+@@ -29,9 +30,9 @@ frontend all_https_frontend
+ backend verifier-backend
+     balance roundrobin
+     cookie SERVERUSED insert indirect nocache
+-    server server1 verifier-backend:8080 cookie server1
++    server server1 host.docker.internal:8080 cookie server1
+ 
+ backend verifier-ui
+     balance roundrobin
+     cookie SERVERUSED insert indirect nocache
+-    server server1 verifier-ui:4300 cookie server1
+\ No newline at end of file
++    server server1 host.docker.internal:4200 cookie server1
