@@ -109,15 +109,15 @@
 
    ```zsh
    cd path/to/eudi-srv-web-verifier-endpoint-23220-4-kt/docker/verifier-cert
-   ./make-localhost-cert.sh
+   ./make-ec-keystore.sh
    ```
 
 5. パッチファイルから修正内容を反映します
 
    ```zsh
-   git apply --check changes.patch
+   git apply --check --ignore-whitespace changes.patch
    # エラーが表示されたら次の行は実行せず、手動でファイルを修正してください
-   git apply --verbose changes.patch
+   git apply --verbose --ignore-whitespace changes.patch
    ```
 
 ### 4.2. フロントエンドサーバーの設定
@@ -132,9 +132,9 @@
 2. パッチファイルから修正内容を反映します
 
    ```zsh
-   git apply --check changes.patch
+   git apply --check --ignore-whitespace changes.patch
    # エラーが表示されたら次の行は実行せず、手動でファイルを修正してください
-   git apply --verbose changes.patch
+   git apply --verbose --ignore-whitespace changes.patch
    ```
 
 ## 5. アプリの実行

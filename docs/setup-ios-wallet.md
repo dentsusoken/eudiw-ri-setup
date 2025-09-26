@@ -69,7 +69,7 @@ EUDI iOS Wallet reference application のリポジトリをローカルにクロ
    git clone https://github.com/eu-digital-identity-wallet/eudi-app-ios-wallet-ui.git
    ```
 
-### 3.2. 3.2 タグのチェックアウト (特定のバージョンへの切り替え)
+### 3.2. タグのチェックアウト (特定のバージョンへの切り替え)
 
 `git checkout` コマンドを実行し、使用するバージョンへ切り替えます。
 
